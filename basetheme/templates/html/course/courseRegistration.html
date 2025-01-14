@@ -1,0 +1,49 @@
+{% extends 'html/base/base.html' %}
+
+{% block body %}
+<div class="w-full flex items-center justify-center mt-10  flex-col gap-2">
+    <div class="w-1/2 bg-gray-300 text-center rounded-2xl backdrop-blur-md py-16">
+        <H1 class="my-4">آپلود فایل CSV</H1>
+          <form  method="POST" enctype="multipart/form-data" class="flex flex-col justify-center items-center gap-5">
+        {% csrf_token %}
+        <input name="csvFile" class="block  text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="multiple_files" type="file" multiple>
+
+        <button class="bg-amber-400 px-4 py-2 rounded-2xl" type="submit">بارگذاری</button>
+    </form>
+    </div>
+
+
+<div class="w-1/2 bg-gray-300 text-center rounded-2xl backdrop-blur-md py-16">
+        <H1 class="my-4"> ( اضافه کردن اساتید)آپلود فایل CSV</H1>
+          <form action="{% url 'professorsRegistration' %}" method="POST" enctype="multipart/form-data" class="flex flex-col justify-center items-center gap-5">
+        {% csrf_token %}
+        <input name="csvFile" class="block  text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="multiple_files" type="file" multiple>
+
+        <button class="bg-amber-400 px-4 py-2 rounded-2xl" type="submit">بارگذاری</button>
+    </form>
+    </div>
+<div class="w-1/2 bg-gray-300 text-center rounded-2xl backdrop-blur-md py-16">
+        <H1 class="my-4"> ( اضافه کردن ;کلاس)آپلود فایل CSV</H1>
+          <form action="{% url 'classRegistration' %}" method="POST" enctype="multipart/form-data" class="flex flex-col justify-center items-center gap-5">
+        {% csrf_token %}
+        <input name="csvFile" class="block  text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="multiple_files" type="file" multiple>
+
+        <button class="bg-amber-400 px-4 py-2 rounded-2xl" type="submit">بارگذاری</button>
+    </form>
+    </div>
+<div class="w-1/2 bg-gray-300 text-center rounded-2xl backdrop-blur-md py-16">
+        <H1 class="my-4"> ( اضافه کردن درس ارائه شده)آپلود فایل CSV</H1>
+          <form action="{% url 'offeredCoursesRegistration' %}" method="POST" enctype="multipart/form-data" class="flex flex-col justify-center items-center gap-5">
+        {% csrf_token %}
+        <input name="csvFile" class="block  text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="multiple_files" type="file" multiple>
+
+        <button class="bg-amber-400 px-4 py-2 rounded-2xl" type="submit">بارگذاری</button>
+    </form>
+    </div>
+
+
+</div>
+
+
+
+{% endblock %}

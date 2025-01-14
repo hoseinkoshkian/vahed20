@@ -1,0 +1,80 @@
+{% extends 'html/base/base.html' %}
+{% load static %}
+{% block body %}
+    <div class="flex mt-2 mx-2 gap-2">
+        <div class=" relative w-3/4 h-fit border border-black rounded-xl">
+            <h2 class="text-center ">کلاس های ارائه شده</h2>
+            <div class="grid grid-cols-7 text-center bg-amber-200 py-2 ">
+                <div>نام درس</div>
+                <div>کد درس</div>
+                <div>استاد</div>
+                <div>روز</div>
+                <div>شروع</div>
+                <div>پایان</div>
+                <div>نوع کلاس</div>
+            </div>
+            <div id="course-content" class="flex flex-col gap-2 text-nowrap overflow-y-hidden">
+
+            </div>
+            <div class="absolute button-0 mt-2 w-full  gap-4 flex justify-center items-center">
+                <div id="next-page" class="bg-green-300  rounded-2xl px-2 py-2"> بعدی</div>
+                <div class="flex gap-2">
+                    <p>شماره صفحه </p>
+                    <div id="page-number"></div>
+                </div>
+                <div id="previous-page" class="bg-red-300  rounded-2xl px-2 py-2">  قبلی</div>
+            </div>
+        </div>
+        <div class="w-1/4  relative">
+            <form id="filter-data">
+                {% csrf_token %}
+            <div class="fixed h-[90vh] bg-red-100 w-[17%] text-center  flex flex-col gap-5  items-center py-4">
+                <h2>فیلتر</h2>
+                <div class="flex flex-col w-[90%] mx-auto gap-2">
+                    <h3>بر اساس استاد</h3>
+                    <input id="professor" class="rounded-2xl" type="text" placeholder="نام استاد">
+                </div>
+                <div class="flex flex-col w-[90%] mx-auto gap-2">
+                    <h3>بر اساس روز</h3>
+                    <select id="weekday" class="rounded-2xl">
+                        <option selected>انتخاب کنید ...</option>
+                        <option value="0" >شنبه</option>
+                        <option value="1" >یکشنبه</option>
+                        <option value="2" >دوشنبه</option>
+                        <option value="3" >سه شنبه</option>
+                        <option value="4" >چهارشنبه</option>
+                        <option value="5">پنجشنبه</option>
+                        <option value="6" >جمعه </option>
+                      </select>
+                </div>
+                <div class="flex flex-col w-[90%] mx-auto gap-2">
+                    <h3>بر تاریخ امتحان</h3>
+                                     <input id="exam_date" class="rounded-2xl" oninput="formatDateInput(this)" type="text" id="exam_date_filter" name="date" pattern="\d{4}/\d{2}/\d{2}" placeholder="0000/00/00"  required>
+
+                </div>
+                <div class="flex flex-col w-[90%] mx-auto gap-2">
+                    <h3>ساعت شروع کلاس</h3>
+                                     <input id="start_time" class="rounded-2xl" oninput="formatDateInput(this)" type="text" id="exam_date_filter" name="date" pattern="\d{4}/\d{2}/\d{2}" placeholder="0000/00/00"  required>
+
+                </div>
+                <div class="flex flex-col w-[90%] mx-auto gap-2">
+                    <h3>ساعت پایان کلاس</h3>
+                                     <input id="end_time" class="rounded-2xl" oninput="formatDateInput(this)" type="text" id="exam_date_filter" name="date" pattern="\d{4}/\d{2}/\d{2}" placeholder="0000/00/00"  required>
+
+                </div>
+                <div id="search-filter" class="absolute bottom-2 text-center bg-amber-400 px-4 py-2 rounded-2xl ">
+                    جست و جو
+                </div>
+            </div>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+
+    <script src="{% static 'js/offeredCourse/main.js' %}">
+
+    </script>
+{% endblock %}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static tailwind_tags %}
+
+<html lang="en">
+<head>
+        {% tailwind_css %}
+    <meta charset="UTF-8">
+    <title> |واحد ۲۰ {% block title %}
+
+    {% endblock %}
+    </title>
+    {% block metatag %}
+    	
+    {% endblock %}
+    {% block css %}
+        
+    {% endblock %}
+</head>
+
+<body dir="rtl">
+<div class="flex">
+    <div class="w-[20%]">
+{% include 'html/base/side.html' %}
+</div>
+<div class="w-[80%]">
+
+{% block body %}
+
+{% endblock %}
+</div>
+
+</div>
+
+{% block js %}
+	
+{% endblock %}
+</body>
+</html>

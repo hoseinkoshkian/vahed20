@@ -1,0 +1,51 @@
+{% extends 'html/base/base.html' %}
+{% load static %}
+{% block body %}
+
+    <div class="flex justify-center items-center flex-col h-screen ">
+    <div class="w-[90%]  h-[20%] mx-auto  ">
+
+        <h1 class="bg-amber-400 w-full text-center py-1">فیلتر</h1>
+       <form id="filterCourse" method="POST">
+    {% csrf_token %}
+    <div class="flex flex-col">
+        <div class="grid grid-cols-4 mt-1">
+            <div>
+                <input name="courseName" id="courseName" class="rounded-xl" type="text" placeholder="نام درس">
+            </div>
+            <div>
+                <input name="courseCode" id="courseCode" class="rounded-xl" type="text" placeholder="کد درس">
+            </div>
+            <div>
+                <input name="practicalUnits" id="practicalUnits" class="rounded-xl" type="text" placeholder="تعداد واحد عملی">
+            </div>
+            <div>
+                <input name="theoreticalUnits" id="theoreticalUnits" class="rounded-xl" type="text" placeholder="تعداد واحد نظری">
+            </div>
+        </div>
+        <div>
+            <button type="button" onclick="filterCourses()">تایید</button>
+        </div>
+    </div>
+</form>
+
+    </div>
+
+    <div class="w-[90%] bg-gray-300 h-[70%] mx-auto overflow-y-scroll ">
+
+        <h1 class="bg-amber-400 w-full text-center py-3">مشاهده لیست دروس</h1>
+        <div id="course-table">
+            اینجا باید جدول باشد
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+{% block js %}
+
+    <script src="{% static 'js/course/main.js' %}">
+
+    </script>
+{% endblock %}
