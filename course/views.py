@@ -8,7 +8,7 @@ import re
 from django.core.paginator import Paginator
 
 class courseRegistration(View):
-    def get (self, request, *args, **kwargs):
+    def get (self, request):
         return render(request , 'html/course/courseRegistration.html' , {})
 
     def post (self, request, *args, **kwargs):
@@ -244,10 +244,12 @@ class getOfferedCoursesApiView(View):
 
         # فیلترها از query params
         professor_name = request.GET.get('professor', None)
+        course_code = request.GET.get('course_code', None)
         weekday = request.GET.get('weekday', None)
         exam_date = request.GET.get('exam_date', None)
         start_time = request.GET.get('start_time', None)
         end_time = request.GET.get('end_time', None)
+        course_name = request.GET.get('course_name', None)
 
         courses = OfferedCourse.objects.filter(is_active=True).values(
             'course__name',
@@ -269,7 +271,11 @@ class getOfferedCoursesApiView(View):
         # اعمال فیلتر بر اساس استاد
         if professor_name:
             courses = courses.filter(professor__name__icontains=professor_name)
-
+        if course_name:
+            courses = courses.filter(course__name__icontains=course_name)
+        if course_code:
+            courses = courses.filter(course__code__icontains=course_code)
+        print(courses.filter())
         # اعمال فیلتر بر اساس روز هفته
         if weekday:
             # دیکشنری نگاشت روزهای هفته به معادل فارسی
@@ -309,5 +315,5 @@ class getOfferedCoursesApiView(View):
 
         # ارسال داده‌ها به فرانت‌اند
         data = list(page_obj)
-
+        print(data)
         return JsonResponse(data, safe=False)

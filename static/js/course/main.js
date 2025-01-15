@@ -18,15 +18,15 @@ function fetchCourses(filterData = {}) {
             const courses = data.courses;
 
             // ساخت جدول
-            let table = '<table class="w-full border-collapse">';
+            let table = '<table  class="w-full border-collapse">';
             table += '<thead><tr><th>کد درس</th><th>نام درس</th><th>تعداد واحد عملی</th><th>تعداد واحد نظری</th></tr></thead>';
             table += '<tbody>';
 
             // اضافه کردن داده‌ها به جدول
             courses.forEach(course => {
                 table += `
-                    <tr>
-                        <td>${course.code}</td>
+                    <tr class="">
+                        <td><a href='/cours/showAllOfferdCourse?course_code=${course.code}';>${course.code}</a></td>
                         <td>${course.name}</td>
                         <td>${course.practical_units}</td>
                         <td>${course.theoretical_units}</td>

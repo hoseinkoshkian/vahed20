@@ -1,6 +1,8 @@
 {% load static %}
 <div class="w-full bg-yellow-400 sticky h-screen py-10 flex flex-col gap-5 ">
-<div class="flex gap-2 bg-white w-[90%] mx-auto rounded-xl items-center justify-center ">
+    <img class="w-[50%] mx-auto rounded-xl" src="{% static 'public/logomain.webp' %}" alt="">
+    
+<div class="flex gap-2 bg-white w-[90%] mx-auto rounded-xl  items-center justify-center ">
     <div>
         <img class="w-8" src="{% static 'public/user_logo.svg' %}" alt="">
     </div>
@@ -8,7 +10,7 @@
     <div>حسین</div>
 </div>
 
-    <div class="bg-white h-1/2 w-[90%] mx-auto rounded-xl py-3 flex-col flex gap-2" >
+    <div class="bg-white h-1/2 w-[90%] mx-auto rounded-xl rounded-xl py-3 flex-col flex gap-2" >
         <a href="{% url 'courseRegistration' %}">
         <div id="course-registration" class="w-[90%] border border-black mx-auto p-2 rounded-2xl   ">
             <p>ثبت دروس</p>

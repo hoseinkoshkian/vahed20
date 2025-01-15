@@ -9,7 +9,7 @@
        <form id="filterCourse" method="POST">
     {% csrf_token %}
     <div class="flex flex-col">
-        <div class="grid grid-cols-4 mt-1">
+        <div class="grid grid-cols-4 mt-1 gap-4">
             <div>
                 <input name="courseName" id="courseName" class="rounded-xl" type="text" placeholder="نام درس">
             </div>
@@ -21,20 +21,21 @@
             </div>
             <div>
                 <input name="theoreticalUnits" id="theoreticalUnits" class="rounded-xl" type="text" placeholder="تعداد واحد نظری">
-            </div>
-        </div>
-        <div>
-            <button type="button" onclick="filterCourses()">تایید</button>
+            </div>        <div >
+            <button class="bg-amber-400 px-4 py-2 rounded-xl " type="button" onclick="filterCourses()">تایید</button>
         </div>
     </div>
+            
+        </div>
+
 </form>
 
     </div>
 
-    <div class="w-[90%] bg-gray-300 h-[70%] mx-auto overflow-y-scroll ">
+    <div class="w-[90%] h-[70%] mx-auto overflow-y-scroll relative ">
 
-        <h1 class="bg-amber-400 w-full text-center py-3">مشاهده لیست دروس</h1>
-        <div id="course-table">
+        <h1 class="bg-amber-400 w-full text-center py-3 sticky top-0 backdrop-blur-3xl" >مشاهده لیست دروس</h1>
+        <div id="course-table" class="text-center">
             اینجا باید جدول باشد
         </div>
     </div>

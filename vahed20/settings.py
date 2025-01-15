@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "basetheme" ,
     'core'
 ]
-NPM_BIN_PATH = 'npm.cmd'
+NPM_BIN_PATH = '/Users/alfa/.nvm/versions/node/v22.8.0/bin/npm'
 
 import os
 

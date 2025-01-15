@@ -4,6 +4,8 @@ function updatePageNumber(page) {
         pageNumberElement.textContent =  page;
     }
 }
+
+
 document.addEventListener('DOMContentLoaded', function () {
     let page = 1; // شماره صفحه فعلی
     updatePageNumber(page)
@@ -13,7 +15,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // تابع برای واکشی داده‌ها از بک‌اند
     function fetchCourses(page) {
-        fetch(`api/getOfferedCoursesApiView?page=${page}`)
+        const urlParams = new URLSearchParams(window.location.search);
+        const course_code = urlParams.get('course_code');
+        fetch(`api/getOfferedCoursesApiView?page=${page}&course_code=${course_code}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -90,6 +94,7 @@ function formatDateInput(input) {
 }
 
 
+
 document.addEventListener('DOMContentLoaded', function () {
     const searchButton = document.getElementById('search-filter'); // دکمه جستجو
     const courseContent = document.getElementById('course-content'); // قسمت نمایش دوره‌ها
@@ -99,11 +104,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function fetchCourses() {
         // جمع‌آوری مقادیر از ورودی‌ها
         const professor = document.getElementById('professor').value;
+
         const weekday = document.getElementById('weekday').value;
         const examDate = document.getElementById('exam_date').value;
         const startTime = document.getElementById('start_time').value;
         const endTime = document.getElementById('end_time').value;
-        console.log( )
+        const course = document.getElementById('course-name').value;
+
+
         // ساخت URL برای API
         let url = `/cours/api/getOfferedCoursesApiView?`;
 
@@ -112,6 +120,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if (examDate) url += `exam_date=${examDate}&`;
         if (startTime) url += `start_time=${startTime}&`;
         if (endTime) url += `end_time=${endTime}&`;
+        if (course) url += `course_name=${course}&`;
+
 
         // حذف علامت & اضافی در انتهای URL
         url = url.slice(0, -1);

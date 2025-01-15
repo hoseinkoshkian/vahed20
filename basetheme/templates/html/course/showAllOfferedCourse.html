@@ -2,7 +2,7 @@
 {% load static %}
 {% block body %}
     <div class="flex mt-2 mx-2 gap-2">
-        <div class=" relative w-3/4 h-fit border border-black rounded-xl">
+        <div class=" relative w-3/4 h-[90vh] border border-black rounded-xl">
             <h2 class="text-center ">کلاس های ارائه شده</h2>
             <div class="grid grid-cols-7 text-center bg-amber-200 py-2 ">
                 <div>نام درس</div>
@@ -13,10 +13,10 @@
                 <div>پایان</div>
                 <div>نوع کلاس</div>
             </div>
-            <div id="course-content" class="flex flex-col gap-2 text-nowrap overflow-y-hidden">
+            <div id="course-content" class="flex flex-col gap-2 text-nowrap overflow-y-hidden px-2">
 
             </div>
-            <div class="absolute button-0 mt-2 w-full  gap-4 flex justify-center items-center">
+            <div class="absolute bottom-0  mt-2 w-full  gap-4 flex justify-center items-center">
                 <div id="next-page" class="bg-green-300  rounded-2xl px-2 py-2"> بعدی</div>
                 <div class="flex gap-2">
                     <p>شماره صفحه </p>
@@ -33,6 +33,10 @@
                 <div class="flex flex-col w-[90%] mx-auto gap-2">
                     <h3>بر اساس استاد</h3>
                     <input id="professor" class="rounded-2xl" type="text" placeholder="نام استاد">
+                </div>
+                <div class="flex flex-col w-[90%] mx-auto gap-2">
+                    <h3>بر اساس درس</h3>
+                    <input id="course-name" class="rounded-2xl" type="text" placeholder="نام درس">
                 </div>
                 <div class="flex flex-col w-[90%] mx-auto gap-2">
                     <h3>بر اساس روز</h3>
