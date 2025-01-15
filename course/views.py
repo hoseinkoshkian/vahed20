@@ -23,9 +23,9 @@ class courseRegistration(View):
             for row in reader:
                 code = row['كد درس'].strip()  # نام دقیق ستون را با دقت وارد کنید
                 name = row['نام درس'].strip()
-                practical_units = int(row['تعداد واحد عملي'].strip() or 0)
-                theoretical_units = int(row['تعداد واحد نظري'].strip() or 0)
-
+                practical_units = float(row['تعداد واحد عملي'].strip() or 0)
+                theoretical_units = float(row['تعداد واحد نظري'].strip() or 0)
+                print(code)
                 # بررسی وجود درس بر اساس کد درس
                 if not Course.objects.filter(code=code).exists():
                     # ایجاد و ذخیره درس جدید
@@ -101,8 +101,8 @@ class offeredCoursesRegistration(View):
             decoded_file = uploaded_file.read().decode('utf-8').splitlines()
             reader = csv.DictReader(decoded_file)
 
-            # پردازش فایل CSV و ذخیره داده‌ها در مدل OfferedCourse
             for row in reader:
+
                 course_code = row.get('كد درس', '').strip()
                 class_code = row.get('كد ارائه کلاس درس', '').strip()
                 professor_name = row.get('استاد', '').strip()
@@ -174,8 +174,8 @@ class offeredCoursesRegistration(View):
                     weekday = ""
                     start_time = ""
                     end_time = ""
-
-                OfferedCourse.objects.get_or_create(
+                print('data is created ')
+                OfferedCourse.objects.create(
                     course=findcourse ,
                     professor=findOstad,
                     class_code =findclass ,

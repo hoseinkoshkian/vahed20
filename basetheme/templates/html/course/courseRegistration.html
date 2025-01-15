@@ -4,7 +4,7 @@
 <div class="w-full flex items-center justify-center mt-10  flex-col gap-2">
     <div class="w-1/2 bg-gray-300 text-center rounded-2xl backdrop-blur-md py-16">
         <H1 class="my-4">آپلود فایل CSV</H1>
-          <form  method="POST" enctype="multipart/form-data" class="flex flex-col justify-center items-center gap-5">
+          <form action="/cours/courseRegistration"  method="POST" enctype="multipart/form-data" class="flex flex-col justify-center items-center gap-5">
         {% csrf_token %}
         <input name="csvFile" class="block  text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="multiple_files" type="file" multiple>
 

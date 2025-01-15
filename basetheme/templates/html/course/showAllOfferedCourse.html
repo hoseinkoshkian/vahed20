@@ -28,7 +28,7 @@
         <div class="w-1/4  relative">
             <form id="filter-data">
                 {% csrf_token %}
-            <div class="fixed h-[90vh] bg-red-100 w-[17%] text-center  flex flex-col gap-5  items-center py-4">
+            <div class="fixed h-[90vh] border border-black rounded-2xl w-[17%] text-center  flex flex-col gap-5  items-center py-4">
                 <h2>فیلتر</h2>
                 <div class="flex flex-col w-[90%] mx-auto gap-2">
                     <h3>بر اساس استاد</h3>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="flex flex-col w-[90%] mx-auto gap-2">
                     <h3>ساعت شروع کلاس</h3>
-                                     <input id="start_time" class="rounded-2xl" oninput="formatDateInput(this)" type="text" id="exam_date_filter" name="date" pattern="\d{4}/\d{2}/\d{2}" placeholder="0000/00/00"  required>
+                    <input id="start_time" class="rounded-2xl"  type="text" id="exam_date_filter" name="date" pattern="\d{2}:d{2}" placeholder="00:00"  required>
 
                 </div>
                 <div class="flex flex-col w-[90%] mx-auto gap-2">
