@@ -1,0 +1,42 @@
+{% extends 'html/base/base.html' %}
+{% load static %}
+
+{% block body %}
+    <div class="w-full   h-[100vh] gap-2 flex justify-center items-center flex-col ">
+    <div class="w-[90%] h-[5%] my-2  ">
+        <input class="border-black border rounded-2xl" type="text" placeholder="جست و جو">
+    </div >
+        <div class="  w-[90%] h-[80%] border-black border rounded-2xl flex flex-col">
+            <div class="grid-cols-5 grid p-2 text-center">
+                <div>نام</div>
+                <div>شماره تلفن</div>
+                <div>لوکیشن دفتر</div>
+                <div>دپارتمان</div>
+                <div>تعداد درس ارائه شده</div>
+            </div>
+            <div  id="professors-data" class="flex flex-col gap-2 overflow-y-scroll">
+                <div  class="grid-cols-5 grid p-2 text-center bg-gray-200">
+                    <div>دکتر مهدی مصلح</div>
+                    <div>۰۹۱۳</div>
+                    <div>گروه کامپیوتر</div>
+                    <div>کامپوتر</div>
+                    <div>۱۲</div>
+                </div>
+            </div>
+        </div>
+            <div class=" bottom-0 h-[5%]  mt-2 w-full  gap-4 flex justify-center items-center">
+                <div id="next-btn" class="bg-green-300  rounded-2xl px-2 py-2"> بعدی</div>
+                <div class="flex gap-2">
+                    <p>شماره صفحه </p>
+                    <div id="page-number"></div>
+                </div>
+                <div id="prev-btn" class="bg-red-300  rounded-2xl px-2 py-2">  قبلی</div>
+            </div>
+
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/course/professorList.js' %}"></script>
+{% endblock %}

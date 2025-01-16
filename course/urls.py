@@ -14,5 +14,9 @@ urlpatterns = [
 #     api
     path('getCoursesApiView', getCoursesApiView.as_view(), name='getCoursesApiView'),
     path('api/getOfferedCoursesApiView', getOfferedCoursesApiView.as_view(), name='getOfferedCoursesApiView'),
+    path('api/getAllProfessor', getAllProfessor.as_view(), name='getAllProfessor'),
 
+    #professor
+    path('professor/<int:id>', professorView.as_view(), name='professorView'),
+    path('professors', professorsListView.as_view(), name='professorView'),
 ]

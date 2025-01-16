@@ -43,7 +43,17 @@ INSTALLED_APPS = [
     "basetheme" ,
     'core'
 ]
-NPM_BIN_PATH = '/Users/alfa/.nvm/versions/node/v22.8.0/bin/npm'
+
+import platform
+
+os_name = platform.system()
+
+if os_name == "Windows":
+    NPM_BIN_PATH = 'npm.cmd'
+elif os_name == "Darwin":  # نام سیستم‌عامل مک در Python
+    NPM_BIN_PATH = '/Users/alfa/.nvm/versions/node/v22.8.0/bin/npm'
+
+
 
 import os
 

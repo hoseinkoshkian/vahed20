@@ -17,7 +17,15 @@ document.addEventListener('DOMContentLoaded', function () {
     function fetchCourses(page) {
         const urlParams = new URLSearchParams(window.location.search);
         const course_code = urlParams.get('course_code');
-        fetch(`api/getOfferedCoursesApiView?page=${page}&course_code=${course_code}`)
+        const professor_id = urlParams.get('professor_id');
+
+        url = `api/getOfferedCoursesApiView?page=${page}`
+        if (course_code)
+            url = `api/getOfferedCoursesApiView?page=${page}&course_code=${course_code}`
+        if (professor_id)
+            url = `api/getOfferedCoursesApiView?page=${page}&professor_id=${professor_id}`
+
+        fetch(url)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -38,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         row.innerHTML = `
                             <div>${course.course__name || ''}</div>
                             <div>${course.course__code || ''}</div>
-                            <div>${course.professor__name || ''}</div>
+                            <div><a href='/cours/showAllOfferdCourse?professor=${course.professor__name}'>${course.professor__name || ''}</a></div>
                             <div>${course.weekday || ''}</div>
                             <div>${course.weekday_start_time || ''}</div>
                             <div>${course.weekday_end_time || ''}</div>
@@ -106,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const professor = document.getElementById('professor').value;
 
         const weekday = document.getElementById('weekday').value;
-        const examDate = document.getElementById('exam_date').value;
         const startTime = document.getElementById('start_time').value;
         const endTime = document.getElementById('end_time').value;
         const course = document.getElementById('course-name').value;
@@ -117,7 +124,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (professor) url += `professor=${professor}&`;
         if (weekday && weekday != "انتخاب کنید ...") url += `weekday=${weekday}&`;
-        if (examDate) url += `exam_date=${examDate}&`;
         if (startTime) url += `start_time=${startTime}&`;
         if (endTime) url += `end_time=${endTime}&`;
         if (course) url += `course_name=${course}&`;

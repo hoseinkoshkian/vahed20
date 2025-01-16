@@ -236,7 +236,7 @@ class getCoursesApiView(View):
         courses_data = list(courses.values('code', 'name', 'practical_units', 'theoretical_units'))
         return JsonResponse({'courses': courses_data})
 
-
+from django.db.models import Count
 class getOfferedCoursesApiView(View):
     def get(self, request, *args, **kwargs):
         page_number = request.GET.get('page', 1)
@@ -250,10 +250,12 @@ class getOfferedCoursesApiView(View):
         start_time = request.GET.get('start_time', None)
         end_time = request.GET.get('end_time', None)
         course_name = request.GET.get('course_name', None)
-
+        professor_id = request.GET.get('professor_id', None)
+        print(professor_id)
         courses = OfferedCourse.objects.filter(is_active=True).values(
             'course__name',
             'professor__name',
+            'professor__id',
             'class_code__code',
             'weekday',
             'weekday_start_time',
@@ -275,7 +277,9 @@ class getOfferedCoursesApiView(View):
             courses = courses.filter(course__name__icontains=course_name)
         if course_code:
             courses = courses.filter(course__code__icontains=course_code)
-        print(courses.filter())
+        if professor_id:
+            courses = courses.filter(professor__id=professor_id)
+
         # اعمال فیلتر بر اساس روز هفته
         if weekday:
             # دیکشنری نگاشت روزهای هفته به معادل فارسی
@@ -317,3 +321,46 @@ class getOfferedCoursesApiView(View):
         data = list(page_obj)
         print(data)
         return JsonResponse(data, safe=False)
+class getAllProfessor(View):
+    def get(self, request, *args, **kwargs):
+        page_number = request.GET.get('page', 1)
+        items_per_page = 20
+        professor_name = request.GET.get('professor', None)
+
+        # فیلتر و شمارش تعداد دروس ارائه‌شده
+        professors = Professor.objects.annotate(
+            offered_courses_count=Count('offeredcourse')
+        ).values(
+            'id',
+            'name',
+            'phone_number',
+            'office_location',
+            'department',
+            'offered_courses_count',  # تعداد دروس ارائه‌شده
+        )
+
+        # اعمال فیلتر بر اساس نام استاد
+        if professor_name:
+            professors = professors.filter(name=professor_name)
+
+        # صفحه‌بندی
+        paginator = Paginator(professors, items_per_page)
+        page_obj = paginator.get_page(page_number)
+
+        # آماده‌سازی داده‌ها برای ارسال
+        data = {
+            "professors": list(page_obj),
+            "total_pages": paginator.num_pages,
+        }
+        return JsonResponse(data, safe=False)
+
+
+class professorView(View):
+    def get (self, request,id):
+        professor = Professor.objects.filter(id=id)
+        if not professor.exists():
+            return JsonResponse('professor not found', safe=False)
+        return render(request , 'html/course/professor.html' , {})
+class professorsListView(View):
+    def get (self, request):
+        return render(request , 'html/course/professorsList.html' , {})

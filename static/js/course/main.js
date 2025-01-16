@@ -26,7 +26,7 @@ function fetchCourses(filterData = {}) {
             courses.forEach(course => {
                 table += `
                     <tr class="">
-                        <td><a href='/cours/showAllOfferdCourse?course_code=${course.code}';>${course.code}</a></td>
+                        <td><a href='/cours/showAllOfferdCourse?course_code=${course.code}'>${course.code}</a></td>
                         <td>${course.name}</td>
                         <td>${course.practical_units}</td>
                         <td>${course.theoretical_units}</td>
